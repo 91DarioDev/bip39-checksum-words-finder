@@ -67,7 +67,7 @@ def main():
     candidates = '\n\nMISSING BITS - WORD:\n'
     for combo in combos:
         entropy = '{}{}'.format(bits_string, combo)
-        hexstr = "{0:0>4X}".format(int(entropy,2)) 
+        hexstr = "{0:0>4X}".format(int(entropy,2)).zfill(int(len(entropy)/4))
         data = binascii.a2b_hex(hexstr)
         hs = sha256(data).hexdigest()
         last_bits = ''.join([ str(bin(int(hs[i], 16))[2:].zfill(4)) for i in range(0, chars_for_checksum) ])
